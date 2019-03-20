@@ -1112,6 +1112,18 @@ int uclogic_params_init(struct uclogic_params *params,
 		}
 
 		break;
+	case VID_PID(USB_VENDOR_ID_UGEE,
+		     USB_DEVICE_ID_UGEE_XPPEN_TABLET_ARTIST22_PRO):
+		/* If this is the pen interface */
+		if (bInterfaceNumber == 1) {
+			rc = WITH_OPT_DESC(XPEN_ARTIST22_PRO_ORIG, xppen_artist22_pro_fixed);
+			if (rc == 0)
+				goto cleanup;
+		} else {
+			/* TODO: Consider marking the interface invalid */
+			uclogic_params_init_invalid(&p);
+		}
+		break;
 	}
 
 #undef VID_PID

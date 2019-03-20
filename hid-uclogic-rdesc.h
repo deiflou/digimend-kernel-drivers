@@ -143,6 +143,12 @@ extern const size_t uclogic_rdesc_xppen_deco01_frame_size;
 extern const __u8 uclogic_rdesc_ugee_g5_frame_arr[];
 extern const size_t uclogic_rdesc_ugee_g5_frame_size;
 
+/* Size of the original descriptor of XP-Pen Artist22 Pro tablet */
+#define UCLOGIC_RDESC_XPEN_ARTIST22_PRO_ORIG_SIZE		210
+/* Fixed report descriptor for XP-Pen Artist22 Pro, interface 1 */
+extern const __u8 uclogic_rdesc_xppen_artist22_pro_fixed_arr[];
+extern const size_t uclogic_rdesc_xppen_artist22_pro_fixed_size;
+
 /* Report ID of Ugee G5 frame control reports */
 #define UCLOGIC_RDESC_UGEE_G5_FRAME_ID 0x06
 
