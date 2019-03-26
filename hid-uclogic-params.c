@@ -1114,14 +1114,17 @@ int uclogic_params_init(struct uclogic_params *params,
 		break;
 	case VID_PID(USB_VENDOR_ID_UGEE,
 		     USB_DEVICE_ID_UGEE_XPPEN_TABLET_ARTIST22_PRO):
-		/* If this is the pen interface */
+		/* If this is the pen and frame interface */
 		if (bInterfaceNumber == 1) {
-			rc = WITH_OPT_DESC(XPEN_ARTIST22_PRO_ORIG, xppen_artist22_pro_fixed);
-			if (rc == 0)
+			/* Probe v2 pen parameters */
+			rc = uclogic_params_pen_init_v2(&p.pen, &found, hdev);
+			if (rc != 0) {
+				hid_err(hdev, "pen probing failed: %d\n", rc);
 				goto cleanup;
+			}
 		} else {
 			/* TODO: Consider marking the interface invalid */
-			uclogic_params_init_invalid(&p);
+			uclogic_params_init_with_pen_unused(&p);
 		}
 		break;
 	}
